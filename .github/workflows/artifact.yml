@@ -19,18 +19,15 @@ jobs:
         name: hello-artifact
         path: hello.txt
 
-  download:
-      needs: build
-      runs-on: ubuntu-latest
-
-      steps:
-        - name: Download Artifacts
-          uses: actions/download-artifact@v4
-          with:
-            name: hello-artifact
-            path: ./artifacts
-
-        - name: Print Artifact
-          run: cat ./artifacts/hello.txt
-
+  download: #added
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download text file
+            uses: actions/download-artifact@v4
+            with:
+              name: hello-artifact
+              path: ./artifacts
+          - name: Display content of the text file
+            run: cat ./artifacts/hello.txt
 
